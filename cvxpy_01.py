@@ -1,4 +1,4 @@
-# simple optimization problem in CVXPY
+# Simple optimization problem in CVXPY
 
 import cvxpy as cp
 from cvxpy import constraints
@@ -9,7 +9,7 @@ y = cp.Variable()
 
 # Create two constraints
 constraints = [x + y == 1,
-                x - y >= 1]
+               x - y >= 1]
 
 # Form objective
 obj = cp.Minimize((x - y)**2)
@@ -33,7 +33,7 @@ optimal var 1.0 1.570086213240983e-22  # x=1, y=0
 
 # Replace the objective
 prob2 = cp.Problem(cp.Maximize(x + y), prob.constraints)
-print("optimal value of prob2", prob2.solve())  
+print("optimal value of prob2", prob2.solve())
 
 # value of prob.solve() is prob.value(optimal value of obj fn)
 
@@ -42,6 +42,7 @@ print("optimal value of prob2", prob2.solve())
 constraints = [x + y <= 3] + prob2.constraints[1:]
 prob3 = cp.Problem(prob2.objective, constraints)
 print("optimal value of prob3", prob3.solve())
+
 """
 Result
 optimal value of prob2 0.9999999999945575

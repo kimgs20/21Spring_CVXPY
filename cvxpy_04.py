@@ -27,6 +27,7 @@ print("A solution x is")
 print(x.value)
 print("A dual solution is")
 print(prob.constraints[0].dual_value)
+
 """
 Result
 The optimal value is -15.220912605552897
