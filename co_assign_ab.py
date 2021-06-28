@@ -9,16 +9,14 @@ mu = np.abs(np.random.randn(n))     # n risky assets with the expected returns
 Sigma = np.random.randn(n, n)       # covariance of asset returns
 Sigma = Sigma.T.dot(Sigma)
 lamb = cp.Parameter(nonneg=True)    # risk preference parameter of investor, non-negative
-iota = np.ones((n,1))               # vector of ones
-
-# iota = np.ones((n,1))
+iota = np.ones((n, 1))               # vector of ones
 
 # b. Solve (MV.1): QP
 w = cp.Variable(n)      # 'investment proportion' or 'porfolio allocation vector'
 ret = mu.T @ w
 risk = cp.quad_form(w, Sigma)
 prob = cp.Problem(cp.Minimize(risk - lamb * ret),
-                 [iota.T @ w == 1, # equal to cp.sum(w) == 1
+                  [iota.T @ w == 1,  # equal to cp.sum(w) == 1
                   w >= 0])  # long position only (leverage is not mentioned)
 
 # lamb_vals = np.logspace(-2, 3, num=SAMPLES)
@@ -49,8 +47,8 @@ plt.plot(risk_data, ret_data, 'g-')  # Efficient frontier
 # plot lambda points
 for marker in markers_on:
     plt.plot(risk_data[marker], ret_data[marker], 'bs')
-    ax.annotate(r"$\lambda = %.2f$" % lamb_vals[marker], 
-    xy=(risk_data[marker] + .08, ret_data[marker] - .03))
+    ax.annotate(r"$\lambda = %.2f$" % lamb_vals[marker],
+                xy=(risk_data[marker] + .08, ret_data[marker] - .03))
 
 # plot indiviudal assets
 for i in range(n):

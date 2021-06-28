@@ -3,7 +3,6 @@
 import cvxpy as cp
 import numpy as np
 import matplotlib.pyplot as plt
-# import scipy as sp
 
 np.random.seed(1)
 n = 10
