@@ -17,7 +17,7 @@ ret = mu.T @ w
 risk = cp.quad_form(w, Sigma)
 prob = cp.Problem(cp.Maximize(ret - gamma * risk),
                   [cp.sum(w) == 1,
-                  w >= 0])
+                  w >= 0])  # long position only
 
 
 # Compute trade-off curve.
